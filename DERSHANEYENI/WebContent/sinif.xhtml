@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html" 
+   xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+<f:view>
+<h:form>
+
+
+<h3>DERSHANE OTOMASYON SİSTEMİ</h3>
+    <p:tabView orientation="left">
+        <p:tab title="Öğrenci Ekle">
+           <h:panelGrid id="grid" columns="2" cellpadding="5">
+Ad: <p:inputText value="" /> <br/>
+Soyad : <p:inputText value="" /> <br/>
+Cinsiyet : <p:selectOneRadio>
+
+
+<f:selectItem itemValue="Bay" itemLabel="Bay"/>
+			<f:selectItem itemValue="Bayan" itemLabel="Bayan"/>
+</p:selectOneRadio> 
+
+Doğum Yeri: <p:selectOneMenu>
+     <f:selectItem itemValue="ankara" itemLabel="ankara"/>
+     <f:selectItem itemValue="istanbul" itemLabel="istanbul"/>
+     <f:selectItem itemValue="bolu" itemLabel="bolu"/>
+     <f:selectItem itemValue="düzce" itemLabel="düzce"/>
+
+</p:selectOneMenu>
+Doğum Tarihi: <p:calendar></p:calendar>
+
+Adres : <p:inputTextarea></p:inputTextarea>
+
+Dönem : <p:inputText>
+
+</p:inputText>
+
+Sınıf : <p:selectOneMenu>
+
+
+</p:selectOneMenu>
+
+
+
+<p:button value="Kaydet"></p:button>
+  </h:panelGrid>   
+          
+        </p:tab>
+        <p:tab  title="Öğrenci Listesi" >
+            <h:panelGrid columns="2" cellpadding="10" action="giris.xhtml">
+               <p:dataTable  value="">
+
+  <p:column headerText="Okul No">
+        <h:outputText value="" />
+    </p:column>
+    <p:column headerText="Ad">
+        <h:outputText value="" />
+    </p:column>
+ 
+    <p:column headerText="Soyad">
+        <h:outputText value="" />
+    </p:column>
+ 
+    <p:column headerText="Cinsiyet">
+        <h:outputText value="" />
+    </p:column>
+ 
+    <p:column headerText="Doğum yeri">
+        <h:outputText value="" />
+    </p:column>
+    
+     <p:column headerText="Doğum Tarihi">
+        <h:outputText value="" />
+    </p:column>
+     <p:column headerText="Adres">
+        <h:outputText value="" />
+    </p:column>
+     <p:column headerText="Sınıf">
+        <h:outputText value="" />
+    </p:column>
+     <p:column headerText="Dönem">
+        <h:outputText value="" />
+    </p:column>
+    
+</p:dataTable>
+
+            </h:panelGrid>
+        </p:tab>
+        <p:tab title="Sınıf Ekle">
+            <h:panelGrid columns="2" cellpadding="10">
+              Sınıf <p:inputText></p:inputText>
+              <p:button value="Kaydet"></p:button>
+            </h:panelGrid>
+        </p:tab>
+        
+          <p:tab title="Dönem Ekle">
+            <h:panelGrid columns="2" cellpadding="10">
+              Dönem <p:inputText></p:inputText>
+              <p:button value="Kaydet"></p:button>
+            </h:panelGrid>
+        </p:tab>
+        
+        
+          <p:tab title="Kullanıcı Ekle">
+            <h:panelGrid columns="2" cellpadding="10">
+                Kullanıcı Adı :<p:inputText></p:inputText>
+                Şifre : <p:password></p:password>
+                Yetki : <p:selectOneMenu>
+                <f:selectItem itemLabel="öğrenci" itemValue="ogrenci"/>
+                <f:selectItem itemLabel="admin" itemValue="admin"/>
+                
+                </p:selectOneMenu>
+            </h:panelGrid>
+        </p:tab>
+          
+    </p:tabView>
+
+
+
+
+
+
+
+</h:form>
+
+
+
+
+</f:view>
+
+</body> 
+</html>

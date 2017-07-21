@@ -1,0 +1,299 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head>
+<body>
+<ui:composition template="/template/TemplateSayfasi.xhtml">
+	<ui:define name="title"> Anasayfa </ui:define>
+<ui:define name="content">
+	<f:view>
+		<h:form>
+			<h3 align="center">DERSHANE OTOMASYON SİSTEMİ</h3>
+			<p:tabView orientation="left">
+
+				<!--1. TAB BAŞLANGIÇ -->
+				<p:tab title="Öğrenci Ekle">
+					<h:panelGrid id="grid" columns="2" cellpadding="5">
+						<p:outputLabel value="Ad: " />
+						<p:inputText value="#{yonetimBean.ogrenci.ad}"  />
+
+
+						<p:outputLabel value="Soyad: " />
+						<p:inputText value="#{yonetimBean.ogrenci.soyad}" />
+
+						<p:outputLabel value="Cinsiyet: " />
+						<p:selectOneRadio value="#{yonetimBean.ogrenci.cinsiyet}">
+							<f:selectItem itemValue="erkek" itemLabel="Erkek" />
+							<f:selectItem itemValue="kadin" itemLabel="Kadın" />
+						</p:selectOneRadio>
+
+						<p:outputLabel value="Doğum Yeri: " />
+						<p:selectOneMenu value="#{yonetimBean.ogrenci.dogumYeri}"
+							valueChangeListener="#{yonetimBean.ilceYukle}"
+							onchange="submit()">
+							<f:selectItem itemValue="" itemLabel="Ankara" />
+							<f:selectItem itemValue="" itemLabel="İstanbul" />
+							<f:selectItem itemValue="" itemLabel="Adana" />
+							<f:selectItem itemValue="" itemLabel="Düzce" />
+						</p:selectOneMenu>
+
+						<p:outputLabel value="İlçe: " />
+						<p:selectOneMenu value="#{yonetimBean.ogrenci.ilce}">
+							<f:selectItems value="#{yonetimBean.ilcelistesi}" />
+
+						</p:selectOneMenu>
+
+
+						<p:outputLabel value="Adres: " />
+						<p:inputTextarea value="#{yonetimBean.ogrenci.adres}" />
+
+						<p:outputLabel value="Dönem: " />
+						<p:inputText value="#{yonetimBean.ogrenci.donem}" />
+
+						<p:outputLabel value="Sınıf: " />
+						<p:selectOneMenu value="#{yonetimBean.ogrenci.sinif}">
+							<f:selectItem itemLabel="Sınıf seçiniz" itemValue="" />
+							<f:selectItems value="#{sinifYonetim.siniflar}" />
+
+						</p:selectOneMenu>
+
+						<p:commandButton value="Kaydet"
+							actionListener="#{yonetimBean.kaydet()}" update="kayitform"
+							ajax="false" />
+
+					</h:panelGrid>
+				</p:tab>
+
+
+				<p:tab title="Öğrenci Listesi">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:dataTable var="yonetim" value="#{yonetimBean.ogrenciListesi}">
+							<p:column>
+								<f:facet name="header">sec</f:facet>
+								<h:commandLink value="sec">
+									<f:setPropertyActionListener value="#{yonetim}"
+										target="#{yonetimBean.ogrenci}" />
+								</h:commandLink>
+
+							</p:column>
+							<p:column headerText="Sil">
+								<h:commandLink action="#{yonetimBean.sil()}" value="Sil">
+									<f:setPropertyActionListener value="#{yonetim}"
+										target="#{yonetimBean.ogrenci}" />
+								</h:commandLink>
+							</p:column>
+							<p:column headerText="Ad">
+								<h:outputText value="#{yonetim.ad}" />
+							</p:column>
+
+							<p:column headerText="Soyad">
+								<h:outputText value="#{yonetim.soyad}" />
+							</p:column>
+
+							<p:column headerText="Cinsiyet">
+								<h:outputText value="#{yonetim.cinsiyet}" />
+							</p:column>
+
+							<p:column headerText="Doğum yeri">
+								<h:outputText value="#{yonetim.dogumYeri}" />
+							</p:column>
+							<p:column headerText="İlçe">
+								<h:outputText value="#{yonetim.ilce}" />
+							</p:column>
+
+							<p:column headerText="Adres">
+								<h:outputText value="#{yonetim.dogumYeri}" />
+							</p:column>
+							<p:column headerText="Sınıf">
+								<h:outputText value="#{yonetim.sinif}" />
+							</p:column>
+							<p:column headerText="Dönem">
+								<h:outputText value="#{yonetim.donem}" />
+							</p:column>
+
+						</p:dataTable>
+						<br />
+						<br />
+						<p:commandButton value="Duzenle" action="yeni" id="btn"
+						ajax="false"	 />
+
+					</h:panelGrid>
+				</p:tab>
+
+				<p:tab title="Ögretmen Ekle">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:outputLabel value="Ad: " />
+						<p:inputText value="#{ogretmenBean.ogretmen.ad}" />
+
+						<p:outputLabel value="Soyad: " />
+						<p:inputText value="#{ogretmenBean.ogretmen.soyad}" />
+
+						<p:outputLabel value="Cinsiyet: " />
+						<p:selectOneRadio value="#{ogretmenBean.ogretmen.cinsiyet}">
+							<f:selectItem itemValue="erkek" itemLabel="Erkek" />
+							<f:selectItem itemValue="kadin" itemLabel="Kadın" />
+						</p:selectOneRadio>
+
+						<p:outputLabel value="Doğum Yeri: " />
+						<p:selectOneMenu value="#{ogretmenBean.ogretmen.dogumyeri}"
+							>
+							<f:selectItem itemValue="" itemLabel="Ankara" />
+							<f:selectItem itemValue="" itemLabel="İstanbul" />
+							<f:selectItem itemValue="" itemLabel="Adana" />
+							<f:selectItem itemValue="" itemLabel="Düzce" />
+						</p:selectOneMenu>
+
+						
+
+					
+
+
+						<p:outputLabel value="Adres: " />
+						<p:inputTextarea value="#{ogretmenBean.ogretmen.adres}" />
+
+						<p:outputLabel value="Verecegi Ders: " />
+						<p:selectOneMenu value="#{ogretmenBean.ogretmen.verecegiDers}">
+							<f:selectItem itemLabel="Matematik" itemValue="" />
+							<f:selectItems value="#{ogretmenBean.brans}" />
+
+						</p:selectOneMenu>
+
+						<p:commandButton value="Kaydet"
+							actionListener="#{ogretmenBean.kaydet()}" update="kayitform"
+							ajax="false" />
+					</h:panelGrid>
+
+
+				</p:tab>
+
+
+
+				<p:tab title="Ogretmen Listesi">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:dataTable var="ogret" value="#{ogretmenBean.ogretmenler}">
+
+							<p:column headerText="Sil">
+								<h:commandLink action="#{ogretmenBean.sil()}" value="Sil">
+									<f:setPropertyActionListener value="#{ogret}"
+										target="#{ogretmenBean.ogretmen}" />
+								</h:commandLink>
+							</p:column>
+							<p:column headerText="Ad">
+								<h:outputText value="#{ogret.ad}" />
+							</p:column>
+
+							<p:column headerText="Soyad">
+								<h:outputText value="#{ogret.soyad}" />
+							</p:column>
+
+							<p:column headerText="Cinsiyet">
+								<h:outputText value="#{ogret.cinsiyet}" />
+
+							</p:column>
+							<p:column headerText="Doğum yeri">
+								<h:outputText value="#{ogret.dogumyeri}" />
+
+						
+
+							</p:column>
+							<p:column headerText="Adres">
+								<h:outputText value="#{ogret.adres}" />
+							</p:column>
+							<p:column headerText="Verecegi Ders">
+								<h:outputText value="#{ogret.verecegiDers}" />
+							</p:column>
+
+
+						</p:dataTable>
+
+					</h:panelGrid>
+
+				</p:tab>
+
+
+
+				<p:tab title="Sınav Ekle">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:outputLabel value="Sınav Adı: " />
+						<p:inputText value="#{sinavBean.sinav.sinavAdi}" />
+
+						<p:outputLabel value="Sınav Süresi: " />
+						<p:inputText value="#{sinavBean.sinav.süre}" />
+
+						<p:outputLabel value="Sınıflar: " />
+						<p:inputText value="#{sinavBean.sinav.siniflar}" />
+
+
+
+						<p:commandButton value="Kaydet"
+							actionListener="#{sinavBean.kaydet()}" update="kayitform"
+							ajax="false" />
+					</h:panelGrid>
+
+				</p:tab>
+
+
+
+				<p:tab title="Sinav  Listesi">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:dataTable var="snv" value="#{sinavBean.sinavlar}">
+
+							<p:column headerText="Sil">
+								<h:commandLink action="#{sinavBean.sil()}" value="Sil">
+									<f:setPropertyActionListener value="#{snv}"
+										target="#{sinavBean.sinav}" />
+								</h:commandLink>
+							</p:column>
+							<p:column headerText="Sinav Adi">
+								<h:outputText value="#{snv.sinavAdi}" />
+							</p:column>
+
+							<p:column headerText="Sinav Süresi">
+								<h:outputText value="#{snv.süre}" />
+							</p:column>
+
+							<p:column headerText="Siniflar">
+								<h:outputText value="#{snv.siniflar}" />
+							</p:column>
+
+						</p:dataTable>
+
+					</h:panelGrid>
+
+				</p:tab>
+
+
+
+				<p:tab title="Duyurular">
+					<h:panelGrid columns="2" cellpadding="10">
+						<p:outputLabel value="18.05.2017:ÖNEMLİ: " />
+						<h:messages>19 Mayıs nedeni ile dershanemizde bu cuma ders işlenmeyecetir.Derslerin telafi saatleri açıklanacaktır.</h:messages>
+						<p:outputLabel value="14.05.2017:ÖNEMLİ: " />
+						<h:messages>En son yapılan haftalık deneme sonucları hakkında velilerin bilgilendirilmesi gerekmektedir.</h:messages>
+					</h:panelGrid>
+				</p:tab>
+
+
+
+
+			</p:tabView>
+
+
+
+
+
+		</h:form>
+
+
+
+
+
+	</f:view>
+</ui:define>
+</ui:composition>
+</body>
+</html>

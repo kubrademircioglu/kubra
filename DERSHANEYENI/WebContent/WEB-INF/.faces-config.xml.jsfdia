@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:#giris.xhtml" PATH="/giris.xhtml"
+  SHAPE="150,111,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#giris.xhtml:0" NAME="item"
+   PATH="/giris.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="basarili::#ogrenci.xhtml" NAME="output"
+    PATH="/ogrenci.xhtml" TARGET="rules:#ogrenci.xhtml" TITLE="basarili" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#ogrenci.xhtml" PATH="/ogrenci.xhtml"
+  SHAPE="373,116,0,0" model-entity="JSFProcessGroup" persistent="true"/>
+</PROCESS>

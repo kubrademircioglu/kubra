@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head> 
+<body> 
+<ui:composition template="/template/TemplateSayfasi.xhtml">
+	<ui:define name="title"> Anasayfa </ui:define>
+<ui:define name="content">
+<f:view>
+<h:form>
+
+<h:panelGrid columns="2" cellpadding="1" >
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+						<p:dataTable  var="yonetim" value="#{yonetimBean.ogrenciListesi}">
+							<p:column>
+								<f:facet name="header">sec</f:facet>
+								<h:commandLink value="sec">
+									<f:setPropertyActionListener value="#{yonetim}"
+										target="#{yonetimBean.ogrenci}" />
+								</h:commandLink>
+
+							</p:column>
+							<p:column headerText="Sil">
+								<h:commandLink action="#{yonetimBean.sil()}" value="Sil">
+									<f:setPropertyActionListener value="#{yonetim}"
+										target="#{yonetimBean.ogrenci}" />
+								</h:commandLink>
+							</p:column>
+							<p:column headerText="Ad">
+								<h:outputText value="#{yonetim.ad}" />
+							</p:column>
+
+							<p:column headerText="Soyad">
+								<h:outputText value="#{yonetim.soyad}" />
+							</p:column>
+
+							<p:column headerText="Cinsiyet">
+								<h:outputText value="#{yonetim.cinsiyet}" />
+							</p:column>
+
+							<p:column headerText="Doğum yeri">
+								<h:outputText value="#{yonetim.dogumYeri}" />
+							</p:column>
+							<p:column headerText="İlçe">
+								<h:outputText value="#{yonetim.ilce}" />
+							</p:column>
+
+							<p:column headerText="Adres">
+								<h:outputText value="#{yonetim.dogumYeri}" />
+							</p:column>
+							<p:column headerText="Sınıf">
+								<h:outputText value="#{yonetim.sinif}" />
+							</p:column>
+							<p:column headerText="Dönem">
+								<h:outputText value="#{yonetim.donem}" />
+							</p:column>
+
+						</p:dataTable>
+						<br />
+						<br />
+						<p:commandButton value="Duzenle"
+							action="#{yonetimBean.ogrenciDuzenle()}" ajax="false" rendered="#{yonetimBean.ogrenci.ad!=null}"/>
+
+					</h:panelGrid>
+
+
+
+<p:tab title="Öğrenci Listesi">
+<h:panelGrid id="grid" columns="2" cellpadding="5" style="margin-left:300px; margin-top:25px;">
+						<p:outputLabel value="Ad: " />
+						<p:inputText value="#{yonetimBean.ogrenci.ad}" />
+
+						<p:outputLabel value="Soyad: " />
+						<p:inputText value="#{yonetimBean.ogrenci.soyad}" />
+
+						<p:outputLabel value="Cinsiyet: " />
+						<p:selectOneRadio value="#{yonetimBean.ogrenci.cinsiyet}">
+							<f:selectItem itemValue="erkek" itemLabel="Erkek" />
+							<f:selectItem itemValue="kadin" itemLabel="Kadın" />
+						</p:selectOneRadio>
+
+						<p:outputLabel value="Doğum Yeri: " />
+						<p:selectOneMenu value="#{yonetimBean.ogrenci.dogumYeri}"
+							valueChangeListener="#{yonetimBean.ilceYukle}"
+							onchange="submit()">
+							<f:selectItem itemValue="ankara" itemLabel="Ankara" />
+							<f:selectItem itemValue="istanbul" itemLabel="İstanbul" />
+							<f:selectItem itemValue="adana" itemLabel="Adana" />
+							<f:selectItem itemValue="duzce" itemLabel="Düzce" />
+						</p:selectOneMenu>
+
+						<p:outputLabel value="İlçe: " />
+						<p:selectOneMenu value="#{yonetimBean.ogrenci.ilce}">
+							<f:selectItems value="#{yonetimBean.ilcelistesi}" />
+
+						</p:selectOneMenu>
+
+
+						<p:outputLabel value="Adres: " />
+						<p:inputTextarea value="#{yonetimBean.ogrenci.adres}" />
+
+						<p:outputLabel value="Dönem: " />
+						<p:inputText value="#{yonetimBean.ogrenci.donem}" />
+
+						<p:outputLabel value="Sınıf: " />
+						<p:selectOneMenu value="#{sinifYonetim.sinif}">
+							<f:selectItem itemLabel="Sınıf seçiniz" itemValue="Sınıf seçiniz" />
+							<f:selectItems value="#{sinifYonetim.siniflar}" />
+
+						</p:selectOneMenu>
+
+						<p:commandButton value="Kaydet"
+							actionListener="#{yonetimBean.kaydet()}" update="kayitform"
+							ajax="false" rendered="#{yonetimBean.ogrenci.ad==null}" />
+
+					</h:panelGrid>
+				</p:tab>
+
+
+
+
+
+
+
+
+
+</h:form>
+
+
+
+
+
+
+</f:view>
+</ui:define>
+</ui:composition>
+</body> 
+</html>

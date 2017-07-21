@@ -1,0 +1,108 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+        xmlns:h="http://java.sun.com/jsf/html" 
+   xmlns:p="http://primefaces.org/ui"> 
+
+<h:head></h:head> 
+<body> 
+<f:view>
+<h:form>
+<h3>DERSHANE OTOMASYON SİSTEMİ</h3>
+<p:tabView orientation="left">
+<p:tab title="Ögrenci Ekle">
+<h:panelGrid id="grid"  columns="2" cellpadding="5" >
+Ad: <p:inputText value="#{yonetimBean.ogrenci.ad}" /> <br/>
+Soyad : <p:inputText value="#{yonetimBean.ogrenci.soyad}" /> <br/>
+Cinsiyet : <p:selectOneRadio value="#{yonetimBean.ogrenci.cinsiyet}">
+
+
+<f:selectItem itemValue="Bay" itemLabel="Bay"/>
+			<f:selectItem itemValue="Bayan" itemLabel="Bayan"/>
+</p:selectOneRadio> 
+
+Doğum Yeri: <p:selectOneMenu value="#{yonetimBean.ogrenci.dogumYeri}">
+     <f:selectItem itemValue="ankara" itemLabel="ankara"/>
+     <f:selectItem itemValue="istanbul" itemLabel="istanbul"/>
+     <f:selectItem itemValue="bolu" itemLabel="bolu"/>
+     <f:selectItem itemValue="düzce" itemLabel="düzce"/>
+
+</p:selectOneMenu>
+Adres : <p:inputTextarea value="#{yonetimBean.ogrenci.adres}"></p:inputTextarea>
+
+Dönem : <p:inputText value="#{yonetimBean.ogrenci.donem}">
+
+</p:inputText>
+Sınıf : <p:selectOneMenu value="#{yonetimBean.sinif}">
+
+
+</p:selectOneMenu>
+<p:commandButton value="Kaydet"
+							actionListener="#{yonetimBean.kaydet()}" update="kayitform"
+							ajax="false" />
+							
+</h:panelGrid>
+
+</p:tab>
+
+<p:tab    title="Öğrenci Listesi">
+<h:panelGrid columns="2" cellpadding="10">
+<p:dataTable var="yonetim" value="#{yonetimBean.ogrenciListesi}">
+<p:column>
+<f:facet name="header">
+<h:outputText value="sec"/>
+
+</f:facet>
+<h:commandLink action="#{yonetimBean.sil}" value="Sil" >
+<f:setPropertyActionListener value="#{yonetim}" target="#{yonetimBean.ogrenci}"/>
+</h:commandLink>
+</p:column>
+
+<p:column headerText="Okul">
+								<h:outputText value="#{yonetim.okul}" />
+							</p:column>
+	<p:column headerText="Ad">
+								<h:outputText value="#{yonetim.ad}" />
+							</p:column>
+
+<p:column headerText="soyad">
+								<h:outputText value="#{yonetim.soyad}" />
+							</p:column>
+
+<p:column headerText="Dogum Yeri">
+								<h:outputText value="#{yonetim.dogumYeri}" />
+							</p:column>
+
+<p:column headerText="Adres">
+								<h:outputText value="#{yonetim.adres}" />
+							</p:column>
+
+<p:column headerText="Sinif">
+								<h:outputText value="#{sinifYonetim.sinif}" />
+							</p:column>
+							<p:column headerText="Dönem">
+								<h:outputText value="#{yonetim.donem}" />
+							</p:column>
+
+</p:dataTable>
+
+
+</h:panelGrid>
+
+
+</p:tab>
+
+
+
+</p:tabView>
+
+
+
+</h:form>
+
+
+
+</f:view>
+</body> 
+</html>

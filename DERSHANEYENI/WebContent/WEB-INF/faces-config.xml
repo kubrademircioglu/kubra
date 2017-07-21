@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+ <managed-bean>
+  <managed-bean-name>yonetimBean</managed-bean-name>
+  <managed-bean-class>YonetimBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>sinifYonetim</managed-bean-name>
+  <managed-bean-class>SinifYonetim</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>formData</managed-bean-name>
+  <managed-bean-class>FormData</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>kullaniciBean</managed-bean-name>
+  <managed-bean-class>KullaniciBean</managed-bean-class>
+  <managed-bean-scope>session</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>ogretmenBean</managed-bean-name>
+  <managed-bean-class>OgretmenBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <managed-bean>
+  <managed-bean-name>sinavBean</managed-bean-name>
+  <managed-bean-class>SinavBean</managed-bean-class>
+  <managed-bean-scope>request</managed-bean-scope>
+ </managed-bean>
+ <navigation-rule>
+  <from-view-id>/giris.xhtml</from-view-id>
+  <navigation-case>
+   <from-outcome>basarili</from-outcome>
+   <to-view-id>/ogrenci.xhtml</to-view-id>
+  </navigation-case>
+ </navigation-rule>
+</faces-config>

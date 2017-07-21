@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui">  
+
+<h:head></h:head> 
+<body> 
+<ui:composition template="/template/TemplateSayfasi.xhtml">
+	<ui:define name="title"> Anasayfa </ui:define>
+<ui:define name="content">
+
+<f:view >
+
+
+<h:form>
+<div id="cerceve-icerik" align="center">
+	 <br />
+  <br />
+   <br />
+    <br />
+     <br />
+      <br />
+	<div id="kayit" align="left" >
+	KAYIT OL
+      
+       <br />
+        <br />
+<h:panelGrid columns="2" >
+AD:<p:inputText value="#{kullaniciBean.kullanici.ad}" />
+SOYAD:<p:inputText value="#{kullaniciBean.kullanici.soyad}" />
+KULLANICI ADI:<p:inputText value="#{kullaniciBean.kullanici.kullaniciAdi}" />
+PAROLA:<p:inputText value="#{kullaniciBean.kullanici.sifre}" />
+<br />
+<br />
+<br />
+<br />
+<h:commandButton action="#{kullaniciBean.kaydet()}" value="KAYDET"  />
+</h:panelGrid>
+ </div>
+ 
+
+<div id="giris-kayit" align="left">
+
+     GİRİŞ YAP
+        <br />
+         <br />
+
+<h:panelGrid columns="2"  >
+KULLANICI ADI:<p:inputText value="#{kullaniciBean.girilenKullaniciAdi}" required="true" requiredMessage="Bu alan boş bırakılamaz." id="ad"/>
+
+PAROLA:<p:inputText value="#{kullaniciBean.girilenSifre}" />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+<br />
+
+<h:commandButton action="#{kullaniciBean.girisYap()}" value="GIRIS"/>
+
+<h:outputText value="#{kullaniciBean.mesaj}" />
+</h:panelGrid>
+</div>
+</div>
+</h:form>
+</f:view>
+
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+</ui:define>
+
+
+</ui:composition>
+</body> 
+</html>

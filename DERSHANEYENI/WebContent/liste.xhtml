@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+       xmlns:h="http://java.sun.com/jsf/html" 
+    xmlns:p="http://primefaces.org/ui">
+
+<h:head></h:head> 
+<body> 
+<ui:composition template="/template/TemplateSayfasi.xhtml">
+	<ui:define name="title"> Anasayfa </ui:define>
+<ui:define name="content">
+<f:view>
+
+<h3>DERSHANE OTOMASYON SİSTEMİ</h3>
+<p:tabView>
+<p:tab title="Öğrenci Listesi">
+<h:panelGrid columns="2" cellpadding="10"  >
+<p:dataTable   value="#{yonetimBean.ogrenciListesi}">
+<p:column headerText="Okul ">
+        <h:outputText value="#{yonetimBean.ogrenci.okul}" />
+    </p:column>
+     <p:column headerText="Ad">
+        <h:outputText  value="#{yonetimBean.ogrenci.ad}" />
+    </p:column>
+ 
+    <p:column headerText="Soyad">
+        <h:outputText value="#{yonetimBean.ogrenci.soyad}"/>
+    </p:column>
+ 
+    <p:column headerText="Cinsiyet">
+        <h:outputText value="#{yonetimBean.ogrenci.cinsiyet}" />
+    </p:column>
+ 
+    <p:column headerText="Doğum yeri">
+        <h:outputText value="#{yonetimBean.ogrenci.dogumYeri}" />
+    </p:column>
+    
+<p:column headerText="Adres">
+        <h:outputText value="#{yonetimBean.ogrenci.adres}" />
+    </p:column>
+     <p:column headerText="Sınıf">
+        <h:outputText value="#{yonetimBean.ogrenci.sinif}" />
+    </p:column>
+     <p:column headerText="Dönem">
+        <h:outputText value="#{yonetimBean.ogrenci.donem}" />
+    </p:column>
+
+
+
+
+</p:dataTable>
+
+
+
+
+</h:panelGrid>
+
+
+
+</p:tab>
+
+
+
+
+
+
+
+
+</p:tabView>
+
+
+
+
+
+
+</f:view>
+</ui:define>
+</ui:composition>
+</body> 
+</html>
